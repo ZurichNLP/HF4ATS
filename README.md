@@ -11,7 +11,7 @@ HF4ATS (**H**uman **F**eedback **For** **A**utomatic **T**ext **S**implification
 2. <u>HF4ATS-SFT</u> Complex-simple manual text simplification pairs. This dataset is suitable for supervised fine-tuning.
 
 HF4ATS-DPO data is available at [Zenodo].
-HF4ATS-SFT data is available as `data/sft_<type>.jsonl`, where `<model>` can be `train`, `dev`, and `holdout`. This data is sourced from DEplain-APA data, available at [Zenodo](https://zenodo.org/records/8304430). 
+HF4ATS-SFT data is available as `data/sft_<type>.jsonl`, where `<type>` can be `train`, `dev`, and `holdout`. This data is sourced from DEplain-APA data, available at [Zenodo](https://zenodo.org/records/8304430). 
 
 ## Usage
 
@@ -73,12 +73,13 @@ The HF4ATS-DPO Zenodo record contains all raw data obtained during annotation an
 You must also have the necessary SFT checkpoints saved with the proper name and at the proper location. The rules are as follows:
 1. Let `<model>` be a string from the following set: [disco_llama8b, llama8b, leolm_mistral7b, mistral7b] 
 2. Let `####` inside `checkpoint####` refer to the number of training instances seen during SFT (e.g. 2800 for our disco_llama8b checkpoint).
-2. Save the SFT checkpoint being post-trained at `outputs/models/bs16ga1dv1lr1e-4/sft_<model>/checkpoint####/` folder.
+2. Save the SFT checkpoint being post-trained at `outputs/models/bs16ga1dv1lr1e-4/sft_<model>/checkpoint####/`.
 
 Next, run the following script to perform DPO:
 
 ```bash
 python dpo_wrapper.py "bs16ga1dv1lr1e-4/sft_<model>_checkpoint####" <variant> <user_set> train
+```
 
 `<user_set>` can be either "ta" (target group annotations) or "ea" (expert group annotations)
 
@@ -91,7 +92,9 @@ python dpo_wrapper.py "bs16ga1dv1lr1e-4/sft_<model>_checkpoint####" <variant> <u
 5. "interAA": all preferences indicated by the four (for target group) or two (expert group) annotators with the highest inter-annotation agreement.
 6. "groupX": uses "all" expert-group preferences when training and "intraAA" target-group preferences during evaluation (must set <user_set> to 'ea' when using this preference subset!)
 
-### Automatic Evaluation Metrics for an SFT Checkpoint
+### Automatic Evaluation for an SFT or DPO Checkpoint
+
+
 
 
 
