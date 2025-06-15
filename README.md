@@ -43,10 +43,10 @@ Our SFT model checkpoints are available at [swissubase].
 
 Should you wish to perform SFT, you must first ensure you have access (if required) to the following four models on HuggingFace:
 
-https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
-https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
-https://huggingface.co/DiscoResearch/Llama3-DiscoLeo-Instruct-8B-v0.1 
-https://huggingface.co/LeoLM/leo-mistral-hessianai-7b-chat
+1. https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
+2. https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
+3. https://huggingface.co/DiscoResearch/Llama3-DiscoLeo-Instruct-8B-v0.1 
+4. https://huggingface.co/LeoLM/leo-mistral-hessianai-7b-chat
 
 Next, input your HuggingFace token in place of the text `<YOUR HUGGINGFACE TOKEN HERE>` inside `utils/base_dependencies.py`
 
@@ -61,6 +61,12 @@ python sft_wrapper.py "<model>" bs16ga"<ga>"dv"<gpu>"lr"<lr>"
 `<ga>`, `<gpu>`, and `<lr>` refer to gradient accumulation steps, GPU count, and learning rate respectively. 
 
 The post-grid-search parameter set argument we used for SFT was bs16ga1dv1lr1e-4.
+
+An example SFT train call:
+
+```bash
+python sft_wrapper.py "disco_llama8b" bs16ga1dv1lr1e-4
+```
 
 ### Direct Preference Optimization
 
@@ -78,7 +84,7 @@ You must also have the necessary SFT checkpoints saved with the proper name and 
 Next, run the following script to perform DPO:
 
 ```bash
-python dpo_wrapper.py "bs16ga1dv1lr1e-4/sft_<model>_checkpoint####" <variant> <user_set> train
+python dpo_wrapper.py "bs16ga1dv1lr1e-4/sft_<model>_checkpoint####" "<variant>" "<user_set>" "train"
 ```
 
 `<user_set>` can be either "ta" (target group annotations) or "ea" (expert group annotations)
@@ -92,11 +98,40 @@ python dpo_wrapper.py "bs16ga1dv1lr1e-4/sft_<model>_checkpoint####" <variant> <u
 5. "interAA": all preferences indicated by the four (for target group) or two (expert group) annotators with the highest inter-annotation agreement.
 6. "groupX": uses "all" expert-group preferences when training and "intraAA" target-group preferences during evaluation (must set <user_set> to 'ea' when using this preference subset!)
 
+An example DPO post-train call:
+
+```bash
+python dpo_wrapper.py "bs16ga1dv1lr1e-4/sft_disco_llama8b_checkpoint2800" "intraAA" "ta" "train"
+```
+
 ### Automatic Evaluation for an SFT or DPO Checkpoint
 
+To perform evaluation, you need to have the SFT or DPO checkpoint inside `outputs/models/bs16ga1dv1lr1e-4/`. The rules for SFT checkpoint name & location are provided above. The rules for DPO checkpoint name & location are as follows:
 
+1. Let `<sft_model>` be a string from the following set: [sft_disco_llama8b_checkpoint2800, sft_llama8b_checkpoint2400, sft_leolm_mistral7b_checkpoint1600] (our SFT checkpoints)
+2. `dpo_wrapper.py` will save the DPO checkpoints inside `outputs/models/bs16ga1dv1lr1e-4/` as `dpo_<sft_model>_data<variant>_<user_set>/`, where `<variant>` and `<user_set>` are defined as in the Direct Preference Optimization section above.
 
+Run the following script to evaluate an SFT or DPO checkpoint:
 
+```bash
+python eval_wrapper.py "<full_model>" "<metric>" "bs16ga1dv1lr1e-4" "<stage>"
+```
+
+where `<stage>` is either "dev" or "test" depending on which HF4ATS-SFT dataset should be used for evaluation, `<metric>` is among the following set: [all, bert, bleu, ease, empt, equl, lens, lang, leng, sari, wstf], and `<full_model>` is the name of the DPO or SFT checkpoint to be evaluated. 
+
+`eval_wrapper.py` is set up for offline evaluation. It will first generate inferences to be placed inside `outputs/generations/` before calculating the selected evluation metric. 
+
+An example evaluation call for an SFT checkpoint:
+
+```bash
+python eval_wrapper.py "sft_leolm_mistral7b_checkpoint1600" "all" "bs16ga1dv1lr1e-4" "test"
+```
+
+An example evaluation call for a DPO checkpoint:
+
+```bash
+python eval_wrapper.py "dpo_sft_leolm_mistral7b_checkpoint1600_dataall_ea" "all" "bs16ga1dv1lr1e-4" "test"
+```
 
 ## Copyright notice
 
