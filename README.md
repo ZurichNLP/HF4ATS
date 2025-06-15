@@ -7,11 +7,15 @@ All code and data is intended for non-commercial research use only – please re
 ## HF4ATS Data
 
 HF4ATS (**H**uman **F**eedback **For** **A**utomatic **T**ext **S**implification) is a German-language collection of news sentence simplifications and simplification preferences suitable for automatic simplification preference alignment and/or fine-tuning. It is composed of:
-1. <u>HF4ATS-DPO</u> Automatic text simplification (ATS) preference pairs annotated by both text simplification experts and persons with cognitive impairments. This dataset is suitable for preference alignment.
-2. <u>HF4ATS-SFT</u> Complex-simple manual text simplification pairs. This dataset is suitable for supervised fine-tuning.
+1. [HF4ATS-DPO] Automatic text simplification (ATS) preference pairs annotated by both text simplification experts and persons with cognitive impairments. This dataset is suitable for preference alignment.
+2. [HF4ATS-SFT] Complex-simple manual text simplification pairs. This dataset is suitable for supervised fine-tuning.
 
 HF4ATS-DPO data is available at [Zenodo].
 HF4ATS-SFT data is available as `data/sft_<type>.jsonl`, where `<type>` can be `train`, `dev`, and `holdout`. This data is sourced from DEplain-APA data, available at [Zenodo](https://zenodo.org/records/8304430). 
+
+## HF4ATS Checkpoints
+
+Our SFT and DPO model checkpoints are available at [swissubase].
 
 ## Usage
 
@@ -23,9 +27,11 @@ Requirements:
 pip install -r requirements.txt
 ```
 
+Clone this repository for the necessary data and directory structure.
+
 ### Preparing DEPlain-APA data for Supervised Fine-Tuning
 
-Train, development, and test HF4ATS-SFT data is available already in `data/`. That said, it can be reproduced from the raw DEplain-APA data. 
+Train, development, and test HF4ATS-SFT data is available in `data/`. That said, it can be reproduced from the raw DEplain-APA data. 
 
 To do so, first download the [DEPlain-APA](https://zenodo.org/records/8304430) data. Place `all.csv` inside `data/deplain_sentences/`.
 
@@ -132,14 +138,6 @@ An example evaluation call for a DPO checkpoint:
 ```bash
 python eval_wrapper.py "dpo_sft_leolm_mistral7b_checkpoint1600_dataall_ea" "all" "bs16ga1dv1lr1e-4" "test"
 ```
-
-## Copyright notice
-
-The resulting dataset is released with the following copyright notice:
-
-### German / Deutsch:
-
-### English / Englisch:
 
 ## Citation
 
