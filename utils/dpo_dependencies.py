@@ -871,25 +871,25 @@ def collect_annotations(phase):
         if filename.endswith('.jsonl'):
             curr_pref_annotations = base_dependencies.load_jsonl(os.path.join(anno_directory, filename))
             if 'A_2024-12-11' in filename or 'A_2024-12-13' in filename:
-                a_ids = pd.read_csv('outputs/dpo/for_upload_to_app/preserved/raw_ta01_anno_A.csv')
+                a_ids = pd.read_csv('data/ATS pairs/raw_ta01_anno_A.csv')
                 i = 0
                 for dict in curr_pref_annotations:
                     dict['answer'] = a_ids.iloc[i]['answer']
                     i += 1
             if 'B_2024-12-11' in filename or 'B_2024-12-13' in filename:
-                b_ids = pd.read_csv('outputs/dpo/for_upload_to_app/preserved/raw_ta01_anno_B.csv')
+                b_ids = pd.read_csv('data/ATS pairs/raw_ta01_anno_B.csv')
                 i = 0
                 for dict in curr_pref_annotations:
                     dict['answer'] = b_ids.iloc[i]['answer']
                     i += 1
             if 'C_2024-12-13' in filename:
-                b_ids = pd.read_csv('outputs/dpo/for_upload_to_app/preserved/raw_ta01_anno_C.csv')
+                c_ids = pd.read_csv('data/ATS pairs/raw_ta01_anno_C.csv')
                 i = 0
                 for dict in curr_pref_annotations:
                     dict['answer'] = b_ids.iloc[i]['answer']
                     i += 1
             if 'D_2024-12-13' in filename:
-                b_ids = pd.read_csv('outputs/dpo/for_upload_to_app/preserved/raw_ta01_anno_D.csv')
+                b_ids = pd.read_csv('data/ATS pairs/raw_ta01_anno_D.csv')
                 i = 0
                 for dict in curr_pref_annotations:
                     dict['answer'] = b_ids.iloc[i]['answer']
@@ -935,8 +935,8 @@ def collect_annotations(phase):
     combined_annotations['latest_timestamp_by_day'] = combined_annotations.groupby(['userID', 'day'])['timestamp'].transform('max')
     
     # attach simplification id
-    winning_pairs = pd.DataFrame(base_dependencies.load_jsonl(f'outputs/dpo/pair_creation/all_created_pairs.jsonl'))
-    eval_pairs = pd.read_json('outputs/dpo/dpo_final_pairs/eval_pairs_w_metadata.jsonl', lines=True)
+    winning_pairs = pd.DataFrame(base_dependencies.load_jsonl(f'data/ATS pairs/all_created_pairs.jsonl'))
+    eval_pairs = pd.read_json('data/ATS pairs/eval_pairs_w_metadata.jsonl', lines=True)
     winning_pairs = winning_pairs[['original', 'simp1', 'simp2', 'simp_pair_id', 'info_equality']]
     eval_pairs = eval_pairs[['original', 'simplification1', 'simplification2', 'simp_pair_id', 'info_equality']]
     eval_pairs = eval_pairs.rename(columns={'simplification1':'simp1', 'simplification2':'simp2'})
