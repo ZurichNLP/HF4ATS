@@ -1,0 +1,54 @@
+{
+  "control group": {
+    "annotators": {
+      "Apfel": "eaxsDs6nE0",
+      "Banane": "eaEW8qgdON",
+      "Orange": "eaLaOKZ0Wg",
+      "Birne": "eal9ykfdif",
+      "Erdbeere": "eaChBJkllL",
+      "Traube": "eaiSaYrAJ6",
+      "Pfirsich": "eaUoeWCunp",
+      "Zitrone": "eafDjnNtBc",
+      "Ananas": "eaGxDuJpKs",
+      "Kaki": "eaaY1PQDPK"
+    },
+    "evaluators": {
+      "Kirsche": "eeitMmNaTu",
+      "Pflaume": "eeJWotfAg5",
+      "Aprikose": "eeH3JCti9Z",
+      "Feige": "ee1unpLoat",
+      "Kiwi": "eevXzbLdIz",
+      "Wassermelone": "eeuz1ix85u",
+      "Kokosnuss": "eetcPCYZfu",
+      "Mango": "ee7hc0nkuI",
+      "Papaya": "eeKUTS3ycK",
+      "Litschi": "eeyXxlHlFu"
+    }
+  },
+  "target group": {
+    "annotators": {
+      "Apfel": "tay4kLoIkB",
+      "Banane": "ta4TjWi43K",
+      "Orange": "taWnvZBZUf",
+      "Birne": "tanKkiOop5",
+      "Erdbeere": "tayjmWPYBy",
+      "Traube": "tavrBsLNg5",
+      "Pfirsich": "taUvDzmm7t",
+      "Zitrone": "taLSVtZqwl",
+      "Ananas": "tacohegN41",
+      "Kaki": "taOkOUrloJ"
+    },
+    "evaluators": {
+      "Kirsche": "teVytdK86d",
+      "Pflaume": "teWJyKPYRN",
+      "Aprikose": "teJmm1kx8G",
+      "Feige": "tekNwndwmo",
+      "Kiwi": "teYqDJF5gn",
+      "Wassermelone": "teWuJEuHwR",
+      "Kokosnuss": "tevz7iUIJg",
+      "Mango": "teNxXnzX10",
+      "Papaya": "teOiHjQcYx",
+      "Litschi": "te8SnexUvT"
+    }
+  }
+}
