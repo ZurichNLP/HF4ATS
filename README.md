@@ -140,6 +140,19 @@ python eval_wrapper.py "dpo_sft_leolm_mistral7b_checkpoint1600_dataall_ea" "all"
 
 ### HF4ATS-DPO Recreation
 
+All annotation data is available on [SWISSUbase](). 
+
+To replicate HF4ATS-DPO from the raw annotatino files, first download the individual preference annotation files and placed the contents of the unzipped folder in `data/annotations/`.
+
+Next, run the following script:
+
+```bash
+python pre_dpo.py
+```
+
+At this point, HF4ATS-DPO data is ready for use under `data/preferences_<subset>.jsonl`, where `<subset>` is from the following set: [all, ie, iter, itra, sft_disco_llama8b_checkpoint2800, sft_leolm_mistral7b_checkpoint1600, sft_llama8b_checkpoint2400] 
+
+The file `preferences_raw.jsonl` is also created to allow inspection of annotations, not only those in HF4ATS-DPO (see the SWISSUbase description for further explanation).
 
 ## Citation
 
