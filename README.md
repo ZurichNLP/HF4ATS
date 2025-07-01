@@ -10,7 +10,7 @@ HF4ATS (**H**uman **F**eedback **For** **A**utomatic **T**ext **S**implification
 1. [HF4ATS-DPO] Automatic text simplification (ATS) preference pairs annotated by both text simplification experts and persons with cognitive impairments. This dataset is suitable for preference alignment.
 2. [HF4ATS-SFT] Complex-simple manual text simplification pairs. This dataset is suitable for supervised fine-tuning. This data is sourced from DEplain-APA data, available at [Zenodo](https://zenodo.org/records/8304430). 
 
-Both are available at [SWISSUbase].
+Both are available at [SWISSUbase](https://www.swissubase.ch/en/) under reference number 21058.
 
 ## HF4ATS Checkpoints
 
