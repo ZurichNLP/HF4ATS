@@ -16,7 +16,7 @@ Both are available at [SWISSUbase](https://www.swissubase.ch/en/) under referenc
 
 ## HF4ATS Checkpoints
 
-Our SFT and DPO model checkpoints are available at [SWISSUbase].
+Our SFT and DPO model checkpoints are available at [SWISSUbase](https://www.swissubase.ch/en/).
 
 ## Usage
 
@@ -161,7 +161,11 @@ The file `preferences_raw.jsonl` is also created to allow inspection of annotati
 If you use the dataset, please cite the following paper:
 
 ```
-@misc{ 
+@article{
+  title={{Evaluating the Effectiveness of Direct Preference Optimization for Personalizing German Automatic Text Simplifications for Persons with Intellectual Disabilities}},
+  author={Gao, Yingqiang and Johnson, Kaede and Froehlich, David and Carrer, Luisa and Ebling, Sarah},
+  journal={arXiv preprint arXiv:XXX},
+  year={2025}
 }
 ```
 
