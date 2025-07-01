@@ -1,5 +1,7 @@
 # HF4ATS: Human Feedback for Automatic Text Simplification
 
+![Pipeline](figures/hf4ats-teaser.png)
+
 This repository contains the code for the data processing, web application, model training, experiments, and analyses described in the paper ["Evaluating the Effectiveness of Direct Preference Optimization for Personalizing German Automatic Text Simplifications for Persons with Intellectual Disabilities"]().
 
 All code and data is intended for non-commercial research use only – please refer to the accompanying license/copyright notice for details.
