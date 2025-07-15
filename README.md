@@ -164,7 +164,7 @@ If you use the dataset, please cite the following paper:
 @article{
   title={{Evaluating the Effectiveness of Direct Preference Optimization for Personalizing German Automatic Text Simplifications for Persons with Intellectual Disabilities}},
   author={Gao, Yingqiang and Johnson, Kaede and Froehlich, David and Carrer, Luisa and Ebling, Sarah},
-  journal={arXiv preprint arXiv:XXX},
+  journal={arXiv preprint arXiv:2507.01479},
   year={2025}
 }
 ```
